@@ -1,6 +1,5 @@
 ```sql
  	SELECT * FROM club_member_info LIMIT 10;
-
 # SQL_data_cleaning
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
 |---------|---|--------------|-----|-----|------------|---------|---------------|

@@ -30,6 +30,7 @@
 	job_title VARCHAR(50),
 	membership_date VARCHAR(50)
     );
+```
 
 ### Copy all values from club_member_info table
 
@@ -39,6 +40,7 @@
 
 ```sql
 	SELECT * FROM club_member_info_cleaned cmic;
+```
 
 **## Full_name column clean**
 #### The full_name column contains a lot of different points. Idea:
@@ -53,12 +55,14 @@
 	FROM club_member_info_cleaned cmic;
 
 	UPDATE club_member_info_cleaned SET full_name = TRIM(UPPER(full_name));
+```
 
 ### Replace name blanks with NULL
 
 ```sql
 	UPDATE club_member_info_cleaned
 	SET full_name = CASE WHEN full_name = '' THEN NULL ELSE full_name END;
+```
 
 ## Age cleaning
 
@@ -69,6 +73,7 @@
 |COUNT(*)|
 |--------|
 |18|
+```
 
 #### Fix replacing all wrong values using the Median
 

@@ -30,6 +30,41 @@
 	job_title VARCHAR(50),
 	membership_date VARCHAR(50)
     );
-    ```sql
-    insert into club_member_info_cleaned 
-    select * from club_member_info;
+### Copy all values from club_member_info table
+```sql
+	insert into club_member_info_cleaned
+	select * from club_member_info;
+
+```sql
+	SELECT * FROM club_member_info_cleaned cmic;
+
+## Full_name column clean
+#### The full_name column contains a lot of different points. Idea:
+##### Cut white blanks
+##### Convert all names to text
+##### Replace name blanks with NULL
+
+### Trim whitespaces and to uppercase
+```sql
+	SELECT TRIM(UPPER(full_name)) Full_name
+	FROM club_member_info_cleaned cmic;
+
+	UPDATE club_member_info_cleaned SET full_name = TRIM(UPPER(full_name));
+### Replace name blanks with NULL
+```sql
+	UPDATE club_member_info_cleaned
+	SET full_name = CASE WHEN full_name = '' THEN NULL ELSE full_name END;
+
+## Age cleaning
+```sql
+	SELECT COUNT(*) FROM club_member_info_cleaned cmic 
+	WHERE age NOT BETWEEN 18 AND 90 OR age IS NULL ;
+
+|COUNT(*)|
+|--------|
+|18|
+
+#### Fix replacing all wrong values using the Median
+```sql
+	UPDATE club_member_info_cleaned SET age = (SELECT MEDIAN(age) FROM club_member_info_cleaned)
+	WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL ;

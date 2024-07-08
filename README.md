@@ -1,5 +1,6 @@
 ```sql
  	SELECT * FROM club_member_info LIMIT 10;
+
 # SQL_data_cleaning
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
 |---------|---|--------------|-----|-----|------------|---------|---------------|
@@ -18,6 +19,7 @@
 
 ## Copy Table
 ### Create a new table for cleaning
+
 ```sql
     CREATE TABLE club_member_info_cleaned (
 	full_name VARCHAR(50),
@@ -44,17 +46,20 @@
 ##### Replace name blanks with NULL
 
 ### Trim whitespaces and to uppercase
+
 ```sql
 	SELECT TRIM(UPPER(full_name)) Full_name
 	FROM club_member_info_cleaned cmic;
 
 	UPDATE club_member_info_cleaned SET full_name = TRIM(UPPER(full_name));
 ### Replace name blanks with NULL
+
 ```sql
 	UPDATE club_member_info_cleaned
 	SET full_name = CASE WHEN full_name = '' THEN NULL ELSE full_name END;
 
 ## Age cleaning
+
 ```sql
 	SELECT COUNT(*) FROM club_member_info_cleaned cmic 
 	WHERE age NOT BETWEEN 18 AND 90 OR age IS NULL ;
@@ -64,6 +69,7 @@
 |18|
 
 #### Fix replacing all wrong values using the Median
+
 ```sql
 	UPDATE club_member_info_cleaned SET age = (SELECT MEDIAN(age) FROM club_member_info_cleaned)
 	WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL ;

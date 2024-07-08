@@ -31,7 +31,9 @@
 	job_title VARCHAR(50),
 	membership_date VARCHAR(50)
     );
+
 ### Copy all values from club_member_info table
+
 ```sql
 	insert into club_member_info_cleaned
 	select * from club_member_info;
@@ -57,19 +59,3 @@
 ```sql
 	UPDATE club_member_info_cleaned
 	SET full_name = CASE WHEN full_name = '' THEN NULL ELSE full_name END;
-
-## Age cleaning
-
-```sql
-	SELECT COUNT(*) FROM club_member_info_cleaned cmic 
-	WHERE age NOT BETWEEN 18 AND 90 OR age IS NULL ;
-
-|COUNT(*)|
-|--------|
-|18|
-
-#### Fix replacing all wrong values using the Median
-
-```sql
-	UPDATE club_member_info_cleaned SET age = (SELECT MEDIAN(age) FROM club_member_info_cleaned)
-	WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL ;

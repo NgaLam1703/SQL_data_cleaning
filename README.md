@@ -1,4 +1,5 @@
-	SELECT * FROM club_member_info LIMIT 10;
+```sql
+ 	SELECT * FROM club_member_info LIMIT 10;
 
 # SQL_data_cleaning
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
@@ -29,6 +30,6 @@
 	job_title VARCHAR(50),
 	membership_date VARCHAR(50)
     );
-    ```
+    ```sql
     insert into club_member_info_cleaned 
     select * from club_member_info;

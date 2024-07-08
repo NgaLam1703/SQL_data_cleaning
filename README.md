@@ -42,7 +42,7 @@
 	SELECT * FROM club_member_info_cleaned cmic;
 ```
 
-**## Full_name column clean**
+## Full_name column clean
 #### The full_name column contains a lot of different points. Idea:
 ##### Cut white blanks
 ##### Convert all names to text
@@ -70,9 +70,9 @@
 	SELECT COUNT(*) FROM club_member_info_cleaned cmic 
 	WHERE age NOT BETWEEN 18 AND 90 OR age IS NULL ;
 
-|COUNT(*)|
-|--------|
-|18|
+	|COUNT(*)|
+	|--------|
+	|18|
 ```
 
 #### Fix replacing all wrong values using the Median

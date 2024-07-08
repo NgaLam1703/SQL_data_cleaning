@@ -40,7 +40,7 @@
 ```sql
 	SELECT * FROM club_member_info_cleaned cmic;
 
-## Full_name column clean
+**## Full_name column clean
 #### The full_name column contains a lot of different points. Idea:
 ##### Cut white blanks
 ##### Convert all names to text
@@ -48,8 +48,7 @@
 
 ### Trim whitespaces and to uppercase
 
-```sql
-	SELECT TRIM(UPPER(full_name)) Full_name
+```sql	SELECT TRIM(UPPER(full_name)) Full_name
 	FROM club_member_info_cleaned cmic;
 
 	UPDATE club_member_info_cleaned SET full_name = TRIM(UPPER(full_name));

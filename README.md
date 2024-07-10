@@ -1,6 +1,6 @@
 # SQL_data_cleaning
 
-'''sql	SELECT * FROM club_member_info LIMIT 10;
+```sql	SELECT * FROM club_member_info LIMIT 10;
 
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
 |---------|---|--------------|-----|-----|------------|---------|---------------|
@@ -67,9 +67,9 @@
 	SELECT COUNT(*) FROM club_member_info_cleaned cmic 
 	WHERE age NOT BETWEEN 18 AND 90 OR age IS NULL ;
 
-|COUNT(*)|
-|--------|
-|18|
+	|COUNT(*)|
+	|--------|
+	|18|
 ```
 
 #### Fix replacing all wrong values using the Median

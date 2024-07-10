@@ -86,7 +86,9 @@ There are only 3 possible values for marital status:
 - single
 - married
 - divorced
+
 There is still an empty value in the Marital_status column
+
 First I will use trim and lower to standardize the font
 
 ```sql

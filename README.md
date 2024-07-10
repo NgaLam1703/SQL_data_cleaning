@@ -1,6 +1,7 @@
-	SELECT * FROM club_member_info LIMIT 10;
-
 # SQL_data_cleaning
+
+'''sql	SELECT * FROM club_member_info LIMIT 10;
+
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
 |---------|---|--------------|-----|-----|------------|---------|---------------|
 |addie lush|40|married|alush0@shutterfly.com|254-389-8708|3226 Eastlawn Pass,Temple,Texas|Assistant Professor|7/31/2013|
@@ -14,7 +15,6 @@
 |mendie alexandrescu|46|single|malexandrescu8@state.gov|504-918-4753|34 Delladonna Terrace,New Orleans,Louisiana|Systems Administrator III|3/12/1921|
 | fey kloss|52|married|fkloss9@godaddy.com|808-177-0318|8976 Jackson Park,Honolulu,Hawaii|Chemical Engineer|11/5/2014|
 
--- club_member_info definition
 
 ## Copy Table
 ### Create a new table for cleaning
@@ -37,16 +37,13 @@
 ```sql
 	insert into club_member_info_cleaned
 	select * from club_member_info;
-
-```sql
-	SELECT * FROM club_member_info_cleaned cmic;
 ```
 
 ## Full_name column clean
-#### The full_name column contains a lot of different points. Idea:
-##### Cut white blanks
-##### Convert all names to text
-##### Replace name blanks with NULL
+ The full_name column contains a lot of different points. Idea:
+- Cut white blanks
+- Convert all names to text
+- Replace name blanks with NULL
 
 ### Trim whitespaces and to uppercase
 
@@ -70,9 +67,9 @@
 	SELECT COUNT(*) FROM club_member_info_cleaned cmic 
 	WHERE age NOT BETWEEN 18 AND 90 OR age IS NULL ;
 
-	|COUNT(*)|
-	|--------|
-	|18|
+|COUNT(*)|
+|--------|
+|18|
 ```
 
 #### Fix replacing all wrong values using the Median

@@ -77,5 +77,27 @@
 #### Fix replacing all wrong values using the Median
 
 ```sql
-	UPDATE club_member_info_cleaned SET age = (SELECT MEDIAN(age) FROM club_member_info_cleaned)
-	WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL ;
+	UPDATE club_member_info_cleaned SET age = (SELECT ROUND(MEDIAN(age)) FROM club_member_info_cleaned)
+	WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL;
+```
+## Marital status cleaning
+
+There are only 3 possible values for marital status:
+- single
+- married
+- divorced
+There is still an empty value in the Marital_status column
+First I will use trim and lower to standardize the font
+
+```sql
+	UPDATE club_member_info_cleaned SET martial_status = TRIM(LOWER(martial_status));
+```
+Start cleaning empty data
+
+```sql
+	UPDATE club_member_info_cleaned 
+	SET martial_status = NULL 
+	WHERE NOT martial_status IN ('single','married', 'divorced') OR  martial_status ISNULL ;
+```
+
+

@@ -60,7 +60,7 @@
 
 ```sql
 	UPDATE club_member_info_cleaned
-	SET full_name = CASE WHEN full_name = '' THEN NULL ELSE full_name END;
+		SET full_name = CASE WHEN full_name = '' THEN NULL ELSE full_name END;
 ```
 
 ## Age cleaning
@@ -77,8 +77,9 @@
 #### Fix replacing all wrong values using the Median
 
 ```sql
-	UPDATE club_member_info_cleaned SET age = (SELECT ROUND(MEDIAN(age)) FROM club_member_info_cleaned)
-	WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL;
+	UPDATE club_member_info_cleaned
+		SET age = (SELECT ROUND(MEDIAN(age)) FROM club_member_info_cleaned)
+		WHERE age NOT BETWEEN 18 AND 90 OR age ISNULL;
 ```
 ## Marital status cleaning
 
@@ -98,12 +99,32 @@ Start cleaning empty data
 
 ```sql
 	UPDATE club_member_info_cleaned 
-	SET martial_status = NULL 
-	WHERE NOT martial_status IN ('single','married', 'divorced') OR  martial_status ISNULL ;
+		SET martial_status = NULL 
+		WHERE NOT martial_status IN ('single','married', 'divorced') OR  martial_status ISNULL ;
 ```
 
 ## Other columns
 
+First use the Trim and Lower functions to adjust the text shape accordingly
+
+```sql
+	UPDATE club_member_info_cleaned SET 
+		phone = TRIM(LOWER(phone)) ,
+		full_address = TRIM(LOWER(full_address)) ,
+		job_title = TRIM(LOWER(job_title)) ,
+		membership_date = TRIM(LOWER(membership_date)) ;
+```
 Replace all empty values with `NULL`
+
+```sql
+	UPDATE club_member_info_cleaned SET 
+		phone = NULL WHERE phone = '';
+	UPDATE club_member_info_cleaned SET 
+		full_address = NULL WHERE full_address = '';
+	UPDATE club_member_info_cleaned SET 
+		job_title = NULL WHERE job_title = '';
+	UPDATE club_member_info_cleaned SET 
+		membership_date = NULL WHERE membership_date = '';
+```
 
 

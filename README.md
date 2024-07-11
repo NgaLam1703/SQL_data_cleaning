@@ -102,4 +102,8 @@ Start cleaning empty data
 	WHERE NOT martial_status IN ('single','married', 'divorced') OR  martial_status ISNULL ;
 ```
 
+## Other columns
+
+Replace all empty values with `NULL`
+
 
